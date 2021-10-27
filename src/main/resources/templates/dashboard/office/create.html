@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="createOffice">
+    <div class="row">
+        <div class="col-lg-12" style="margin-top: 10px;">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-title mb-4">Thêm mới chi nhánh</h4>
+
+                    <form class="parsley-examples" id="create-form">
+                        <div class="form-group">
+                            <label>Tên chi nhánh<span class="text-danger">*</span></label>
+                            <input type="text" name="office_name" parsley-trigger="change" required="" placeholder="Nhập tên chi nhánh" class="form-control" id="office_name">
+                        </div>
+                        <div class="form-group">
+                            <label>Địa chỉ<span class="text-danger">*</span></label>
+                            <input type="text" name="office_address" parsley-trigger="change" required="" placeholder="Nhập địa chỉ chi nhánh" class="form-control" id="office_address">
+                        </div>
+                        <div class="form-group text-right mb-0">
+                            <button class="btn btn-primary waves-effect waves-light mr-1" id="create-button" type="button">
+                                Tạo mới
+                            </button>
+                            <button type="reset" class="btn btn-secondary waves-effect waves-light">
+                                Thoát
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+            <!-- end card -->
+        </div>
+        <!-- end col -->
+    </div>
+</div>
+
+
+</html>

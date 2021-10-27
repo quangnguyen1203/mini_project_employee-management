@@ -1,0 +1,86 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="side-bar">
+    <!-- Topbar Start -->
+  <div class="navbar-custom">
+
+    <!-- LOGO -->
+    <div class="logo-box text-center" style=" padding: 15px">
+      <span class="company" style="color: white; font-size:30px">Aureole IT</span>
+    </div>
+
+    <!-- LOGO -->
+
+
+    <ul class="list-unstyled topnav-menu topnav-menu-left m-0">
+      <li>
+        <button class="button-menu-mobile waves-effect">
+          <i class="mdi mdi-menu"></i>
+        </button>
+      </li>
+
+      <li class="d-none d-lg-block">
+        <form class="app-search">
+          <div class="app-search-box">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Tìm kiếm.....">
+              <div class="input-group-append">
+                <button class="btn" type="submit">
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </li>
+    </ul>
+  </div>
+  <!-- end Topbar --> <!-- ========== Left Sidebar Start ========== -->
+  <div class="left-side-menu">
+
+    <div class="slimscroll-menu">
+
+      <!--- Sidemenu -->
+      <div id="sidebar-menu">
+           <ul class="metismenu" id="side-menu">
+               <li>
+                   <a href="/home" class="waves-effect">
+                       <i class="fas fa-chart-bar"></i></i>
+                       <span> Chi nhánh </span>
+                   </a>
+               </li>
+
+               <li>
+                   <a href="javascript: void(0);" class="waves-effect">
+                       <i class="fas fa-money-check-alt"></i>
+                       <span> Quản lý nhân viên </span>
+                       <span class="menu-arrow"></span>
+                   </a>
+                   <ul class="nav-second-level" aria-expanded="false">
+                   		<li><a href="/skills">Danh sách kỹ năng</a></li>
+                   		<li><a href="/create-employee">Tạo mới nhân viên</a></li>
+                       	<li><a href="/employees">Danh sách nhân viên</a></li>
+                       	<li><a href="#">Danh sách nhân viên đã nghỉ</a></li>
+                   </ul>
+               </li>
+
+               <li>
+                   <a href="javascript: void(0);" class="waves-effect">
+                       <i class="fas fa-tasks"></i>
+                       <span> Quản lý chi nhánh </span>
+                       <span class="menu-arrow"></span>
+                   </a>
+                   <ul class="nav-second-level" aria-expanded="false">
+                      	<li><a href="/offices">Danh sách chi nhánh</a></li>
+                      	<li><a href="/officeHidden">Danh sách chi nhánh đã bị xóa</a></li>
+                   </ul>
+               </li>
+           </ul>
+        </div>
+      <!-- End Sidebar -->
+    </div>
+    <!-- Sidebar -left -->
+
+  </div>
+  <!-- Left Sidebar End -->
+</div>
+</html>
