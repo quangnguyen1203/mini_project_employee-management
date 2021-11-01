@@ -7,6 +7,8 @@ public interface EmployeeDTO {
 	String getEmployee_name();
 	Date getDob();
 	String getEmployee_address();
+	String getIntroduce();
+	Date getDate_start();
 	String getOffice_name();
 	String getSkill_name();
 }

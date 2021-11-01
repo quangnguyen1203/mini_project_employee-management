@@ -37,7 +37,7 @@
                             <form class="parsley-examples" id="create-form">
                                 <div class="form-group">
                                     <label>Tên nhân viên <span class="text-danger">*</span></label>
-                                    <input type="text" name="employee_name" parsley-trigger="change" required placeholder="Nhập tên nhân viên..." class="form-control" id="employee_name">
+                                    <input type="text" name="employee_name" parsley-trigger="change" required placeholder="Nhập tên nhân viên . . ." class="form-control" id="employee_name">
                                 </div>
                                 <div class="form-group">
                                     <label>Ngày sinh <span class="text-danger">*</span></label>
@@ -45,13 +45,16 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Địa chỉ <span class="text-danger">*</span></label>
-                                    <input type="text" name="employee_address" parsley-trigger="change" required placeholder="Nhập địa chỉ nhân viên..." class="form-control" id="employee_address">
+                                    <input type="text" name="employee_address" parsley-trigger="change" required placeholder="Nhập địa chỉ nhân viên . . ." class="form-control" id="employee_address">
                                 </div>
                                 <div class="form-group">
                                     <label>Giới thiệu bản thân <span class="text-danger">*</span></label>
-                                    <textarea type="text" name="introduce" parsley-trigger="change" required placeholder="Nhập giới thiệu bản thân nhân viên..." class="form-control" id="introduce"></textarea>
+                                    <textarea type="text" name="introduce" parsley-trigger="change" required placeholder="Nhập giới thiệu bản thân nhân viên . . ." class="form-control" id="introduce"></textarea>
                                 </div>
-                                
+                                <div class="form-group">
+                                    <label>Ngày bắt đầu làm việc <span class="text-danger">*</span></label>
+                                    <input type="date" name="date_start" parsley-trigger="change" required class="form-control" id="date_start">
+                                </div>
                                 <div class="row">
 	                                <div class="form-group col-lg-6">
 	                                    <label>Kỹ năng <span class="text-danger">*</span></label>
@@ -69,7 +72,7 @@
                                         Tạo mới
                                     </button>
                                     <button type="reset" class="btn btn-secondary waves-effect waves-light">
-                                        Huỷ
+                                        Hủy
                                     </button>
                                 </div>
 

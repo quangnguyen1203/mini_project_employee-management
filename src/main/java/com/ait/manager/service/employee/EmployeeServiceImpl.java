@@ -47,5 +47,28 @@ public class EmployeeServiceImpl implements EmployeeService{
 		return employeeRepository.totalEmployeeById(id);
 	}
 
+	@Override
+	public Optional<EmployeeDTO> employeeFindById(Long id) {
+		// TODO Auto-generated method stub
+		return employeeRepository.employeeFindById(id);
+	}
+
+	@Override
+	public Iterable<EmployeeDTO> listEmployeeHidden() {
+		// TODO Auto-generated method stub
+		return employeeRepository.listEmployeeHidden();
+	}
+
+	@Override
+	public void deleteEmployeeById(Long id) {
+		// TODO Auto-generated method stub
+		employeeRepository.deleteEmployeeById(id);
+	}
+
+	@Override
+	public void restoreEmployee(Long id) {
+		// TODO Auto-generated method stub
+		employeeRepository.restoreEmployee(id);
+	}
 
 }

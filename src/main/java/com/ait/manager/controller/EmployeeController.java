@@ -1,10 +1,15 @@
 package com.ait.manager.controller;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
@@ -39,6 +44,12 @@ public class EmployeeController {
 		return new ModelAndView("dashboard/employee/list");
 	}
 
+	
+	@GetMapping("/hidden-employees")
+	public ModelAndView homePageHidden() {
+		return new ModelAndView("dashboard/employee/hiddenList");
+	}
+
 //	init create page
 	@GetMapping("/create-employee")
 	public ModelAndView pageCreate() {
@@ -56,4 +67,50 @@ public class EmployeeController {
 	public ResponseEntity<Iterable<EmployeeDTO>> listEmployee(){
 		return new ResponseEntity<>(employeeServiceImpl.listEmployee(), HttpStatus.OK);
 	}
+	
+	@GetMapping("/employees/hidden-list-employee")
+	public ResponseEntity<Iterable<EmployeeDTO>> listHiddenEmployee(){
+		return new ResponseEntity<>(employeeServiceImpl.listEmployeeHidden(), HttpStatus.OK);
+	}
+
+	@DeleteMapping("/employees/{id}")
+    public ResponseEntity<Employee> deleteEmpEntity(@PathVariable Long id) {
+        Optional<Employee> employeeOptional = employeeServiceImpl.findById(id);
+        if (!employeeOptional.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        employeeServiceImpl.deleteEmployeeById(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+	
+	@DeleteMapping("/employees/hidden-employee/{id}")
+    public ResponseEntity<Employee> deleteHiddenEmployee(@PathVariable Long id) {
+        Optional<Employee> employeeOptional = employeeServiceImpl.findById(id);
+        if (!employeeOptional.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        employeeServiceImpl.restoreEmployee(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @PutMapping("/employees/edit/{id}")
+    public ResponseEntity<Employee> editEmployee(@RequestBody Employee employee,@PathVariable Long id){
+        employee.setEmployee_id(id); ;
+        employee.getOffice().setOffice_name(officeServiceImpl.findById(employee.getOffice().getOffice_id()).get().getOffice_name());
+        return new ResponseEntity<>(employeeServiceImpl.save(employee),HttpStatus.OK);
+    }
+
+
+	
+	@GetMapping("/employees/skill-employee/{id}") 
+	public ResponseEntity<EmployeeDTO> employeeResponse(@PathVariable Long id){
+		return new ResponseEntity<>(employeeServiceImpl.employeeFindById(id).get(),HttpStatus.OK); 
+	}
+
+	 
+    @GetMapping("/employees/edit-employee/{id}")
+    public ResponseEntity<Employee> employeeResponseEntity(@PathVariable Long id){
+        return new ResponseEntity<>(employeeServiceImpl.findById(id).get(),HttpStatus.OK);
+    }
+
 }

@@ -5,16 +5,14 @@ function getAllOffice(){
     }).done(function (office){
         let content = "";
 		let total_employee = 0;
-        for (let i = office.length-1; i >= 0; i--) {
+        for (let i = 0; i < office.length; i++) {
 			$.ajax({
 	        type: "GET",
 	        url: `/offices/total-employee/${office[i].office_id}`
 		    }).done(function (total){
-				return total;
-			})
-			let response = fetch(`/offices/total-employee/${office[i].office_id}`)
-			console.log(response)
-			content += `
+				total_employee = parseInt(total);
+				console.log(total_employee)
+				content += `
 	                    <tr id="row${office[i].office_id}">
 	                      <td class="text-center">${office[i].office_name}</td>
 						  <td class="text-center">${office[i].office_address}</td>
@@ -24,10 +22,41 @@ function getAllOffice(){
 	                        <button value="${office[i].office_id}" class="btn btn-outline-danger delete-button" ><i class="fas fa-trash-alt"></i>Xóa</button>
 	                      </td>
 	                    </tr>
-            		`;   
+            		`;
+				$("#officeList tbody").html(content);
+				$(".delete-button").on("click", function (){
+		            let id = $(this).attr("value");
+		            deleteConfirm(id);
+		        })
+		        $(".edit-button").on("click",function (){
+		            let id = $(this).attr("value");
+		            editOffice(id);
+		        })
+			})		  
         }
-        $("#officeList tbody").html(content);
-        $(".delete-button").on("click", function (){
+    })
+}
+
+function getTotalEmployeeByOfficeId(id){
+	$.ajax({
+	    type: "GET",
+	    url: `/offices/total-employee/${office[i].office_id}`
+    }).done(function (total){
+		total_employee = parseInt(total);
+		console.log(total_employee)
+		content += `
+                <tr id="row${office[i].office_id}">
+                  <td class="text-center">${office[i].office_name}</td>
+				  <td class="text-center">${office[i].office_address}</td>
+				  <td class="text-center">${total_employee}</td>
+                  <td class="text-center">
+                    <button value="${office[i].office_id}" class="btn btn-outline-primary mr-2 edit-button" ><i class="far fa-edit"></i>Sửa</button>
+                    <button value="${office[i].office_id}" class="btn btn-outline-danger delete-button" ><i class="fas fa-trash-alt"></i>Xóa</button>
+                  </td>
+                </tr>
+    		`;
+		$("#officeList tbody").html(content);
+		$(".delete-button").on("click", function (){
             let id = $(this).attr("value");
             deleteConfirm(id);
         })
@@ -35,12 +64,8 @@ function getAllOffice(){
             let id = $(this).attr("value");
             editOffice(id);
         })
-    })
+	})
 }
-
-/*function getTotalEmployeeByOfficeId(id){
-	
-}*/
 
 function createOffice(){
     let office_name = $("#office_name").val();
@@ -119,9 +144,16 @@ function saveOffice(){
         type: "PUT",
         data: JSON.stringify(office),
         url: `/offices/edit/${office_id}`,
-        success: function (office) {
-			let total_employee = 0;
-            $('#row'+office_id+ ' td').remove();
+	}).done(function (office){
+        let content = "";
+		let total_employee = 0;
+		$.ajax({
+        type: "GET",
+        url: `/offices/total-employee/${office.office_id}`
+	    }).done(function (total){
+			total_employee = parseInt(total);
+			console.log(total_employee)
+			$('#row'+office_id+ ' td').remove();
             $('#row'+office_id).html(`
                         <td class="text-center">${office.office_name}</td>
 						<td class="text-center">${office.office_address}</td>
@@ -130,7 +162,7 @@ function saveOffice(){
                             <button value="${office.office_id}" class="btn btn-outline-primary mr-2 edit-button" ><i class="fas fa-edit"></i>Sửa</button>
                             <button value="${office.office_id}" class="btn btn-outline-danger delete-button" ><i class="fas fa-trash-alt"></i>Xoá</button>
                         </td>`);
-            $(".edit-button").on("click",function (){
+			$(".edit-button").on("click",function (){
 	            let id = $(this).attr("value");
 	            editOffice(id);
         	})
@@ -141,8 +173,9 @@ function saveOffice(){
             $('#editModal').modal("hide");
             App.showSuccessAlert("Chỉnh sữa chi nhánh thành công!")
             $("#edit-office")[0].reset();
-        }
+		})		  
     })
+
 }
 
 function deleteConfirm(officeID) {

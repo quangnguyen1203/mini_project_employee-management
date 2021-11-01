@@ -31,6 +31,8 @@ public class Employee {
 
     private String introduce;
 
+    private Date date_start;
+    
     @OneToOne
     private Office office;
     
@@ -40,8 +42,10 @@ public class Employee {
 	public Employee() {
 	}
 
-	public Employee(Long employee_id, String employee_name, Date dob, String employee_address, List<EmployeeSkill> employeeSkill,
-			String introduce, Office office, boolean isDelete) {
+
+	
+	public Employee(Long employee_id, String employee_name, Date dob, String employee_address,
+			List<EmployeeSkill> employeeSkill, String introduce, Date date_start, Office office, boolean isDelete) {
 		super();
 		this.employee_id = employee_id;
 		this.employee_name = employee_name;
@@ -49,21 +53,25 @@ public class Employee {
 		this.employee_address = employee_address;
 		this.employeeSkill = employeeSkill;
 		this.introduce = introduce;
+		this.date_start = date_start;
 		this.office = office;
 		this.isDelete = isDelete;
 	}
-	
-	public Employee(String employee_name, Date dob, String employee_address, List<EmployeeSkill> employeeSkill, String introduce,
-			Office office, boolean isDelete) {
+
+	public Employee(String employee_name, Date dob, String employee_address, List<EmployeeSkill> employeeSkill,
+			String introduce, Date date_start, Office office, boolean isDelete) {
 		super();
 		this.employee_name = employee_name;
 		this.dob = dob;
 		this.employee_address = employee_address;
 		this.employeeSkill = employeeSkill;
 		this.introduce = introduce;
+		this.date_start = date_start;
 		this.office = office;
 		this.isDelete = isDelete;
 	}
+
+
 
 	public Long getEmployee_id() {
 		return employee_id;
@@ -127,6 +135,14 @@ public class Employee {
 
 	public void setDelete(boolean isDelete) {
 		this.isDelete = isDelete;
+	}
+
+	public Date getDate_start() {
+		return date_start;
+	}
+
+	public void setDate_start(Date date_start) {
+		this.date_start = date_start;
 	}
     
     

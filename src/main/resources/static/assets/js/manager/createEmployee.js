@@ -25,7 +25,7 @@ function getAllSkill() {
                 `;
 		}
 		$("#listSkill").html(content);
-		$('select[name=listSkill]').val(1);
+		$('select[name=listSkill]').val();
 		$('.selectpicker').selectpicker('refresh')
 	})
 }
@@ -35,6 +35,7 @@ function createEmployee() {
 	let dob = $("#dob").val();
 	let employee_address = $("#employee_address").val();
 	let introduce = $("#introduce").val();
+	let date_start = $("#date_start").val();
 	let office = $("#office").val();
 	let employee_skill_tmp = $('select[name=listSkill]').val();
 	/*let employee_skill = [];
@@ -54,10 +55,9 @@ function createEmployee() {
 		dob: dob,
         employee_address:  employee_address,
 		introduce: introduce,
+		date_start: date_start,
 		office: newOffice
 	}
-
-	console.log(employee)
 	if ($("#create-form").valid()){
 		$.ajax({
 			headers: {
@@ -85,8 +85,8 @@ function createEmployee() {
                     data: JSON.stringify(newEmployeeSkill),
                     url: "/employee-skill/create"
                 })
+				
             }
-			
 			$("#create-form")[0].reset();
 			App.showSuccessAlert("Tạo mới nhân viên thành công");
 		}).fail(() =>{

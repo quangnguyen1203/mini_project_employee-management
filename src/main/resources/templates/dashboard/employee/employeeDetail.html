@@ -1,0 +1,52 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="employeeDetail" class="modal fade" id="employeeDetail" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Nhân viên</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="employee-detail">
+          <fieldset class="row g-3">
+            <div>
+              <input type="text" disabled hidden class="form-control" id="id" name="employee_id" value="">
+            </div>
+            <div class="col-md-6">
+              <label for="name" class="form-label">Tên nhân viên</label>
+              <input type="text" disabled class="form-control" id="name" name="name" required value="">
+            </div>
+            <div class="col-md-6">
+              <label for="dob" class="form-label">Ngày sinh</label>
+              <input type="date" disabled class="form-control" id="dob" name="_dob" required value="">
+            </div>
+            <div class="col-md-6">
+              <label for="address" class="form-label">Địa chỉ</label>
+              <input type="text" disabled class="form-control" id="address" name="address" required value="">
+            </div>
+            <div class="col-md-6">
+              <label for="introduce" class="form-label">Giới thiệu bản thân</label>
+              <input type="text" disabled class="form-control" id="introduce" name="introduce" required value="">
+            </div>
+            <div class="col-md-6">
+              <label for="dateStart" class="form-label">Ngày bắt đầu làm việc</label>
+              <input type="date" disabled class="form-control" id="dateStart" name="dateStart" required value="">
+            </div>
+            <div class="col-md-6">
+              <label>Chi nhánh</label>
+              <input type="text" disabled class="form-control" id="office_name" name="office_name" required value="">
+            </div>
+            <div class="col-md-12">
+                <label>Kỹ năng </label>
+                <textarea type="text" disabled class="form-control" id="skill" name="skill" required value=""></textarea>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary dismiss-modal" data-bs-dismiss="modal">Thoát</button>
+      </div>
+    </div>
+  </div>
+</div>
+</html>

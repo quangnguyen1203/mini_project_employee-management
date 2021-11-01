@@ -1,0 +1,74 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--Modal Edit-->
+<div th:fragment="editModalEmployee" class="modal fade" id="editModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Chỉnh sửa nhân viên</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form id="edit-employee">
+          <fieldset class="row g-3">
+            <div>
+              <input type="text" hidden class="form-control" id="employee_id" name="employee_id" value="">
+            </div>
+            <div class="col-md-6">
+              <label for="employee_name" class="form-label">Tên nhân viên</label>
+              <input type="text" class="form-control" id="employee_name" name="employee_name" required value="">
+            </div>
+            <div class="col-md-6">
+              <label for="employee_dob" class="form-label">Ngày sinh</label>
+              <input type="date" class="form-control" id="employee_dob" name="employee_dob" required value="">
+            </div>
+            <div class="col-md-6">
+              <label for="employee_address" class="form-label">Địa chỉ</label>
+              <input type="text" class="form-control" id="employee_address" name="employee_address" required value="">
+            </div>
+            <div class="col-md-6">
+              <label for="employee_introduce" class="form-label">Giới thiệu bản thân</label>
+              <input type="text" class="form-control" id="employee_introduce" name="employee_introduce" required value="">
+            </div>
+<<<<<<< HEAD
+            <div class="col-md-6">
+              <label for="date_start" class="form-label">Ngày bắt đầu làm việc</label>
+              <input type="date" class="form-control" id="date_start" name="date_start" required value="">
+            </div>
+            <div class="col-md-6">
+              <label>Chi nhánh</label>
+              <select class="form-control" name="office" id="office" required value="">
+
+              </select>
+            </div>
+=======
+>>>>>>> ab0ad9b572465d042302819b132caaccd5e3df7e
+            <div class="col-lg-12">
+                <label>Kỹ năng </label>
+                <input type="text" disabled class="form-control" id="list_skill" name="list_skill" required value="">
+                <select class="form-control selectpicker" multiple name="employee_skill" id="employee_skill" required value="">
+                </select>
+            </div>
+<<<<<<< HEAD
+=======
+            <div class="col-md-12">
+              <label>Chi nhánh</label>
+              <select class="form-control" name="office" id="office" required value="">
+
+              </select>
+            </div>
+>>>>>>> ab0ad9b572465d042302819b132caaccd5e3df7e
+          </fieldset>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary dismiss-modal" data-bs-dismiss="modal">Hủy</button>
+<<<<<<< HEAD
+        <button type="button" class="btn btn-primary save-employee">Cập nhật</button>
+=======
+        <button type="button" class="btn btn-primary save-product">Cập nhật</button>
+>>>>>>> ab0ad9b572465d042302819b132caaccd5e3df7e
+      </div>
+    </div>
+  </div>
+</div>
+</html>

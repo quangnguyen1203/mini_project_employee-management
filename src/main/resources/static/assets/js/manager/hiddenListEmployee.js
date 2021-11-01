@@ -1,29 +1,31 @@
-function getAllHiddenOffice(){
+function getAllHiddenEmployee(){
     $.ajax({
         type: "GET",
-        url: "/offices/allHiddenOffice"
-    }).done(function (office){
+        url: "/employees/hidden-list-employee"
+    }).done(function (employee){
         let content = "";
-		let total_employee = 0;
-		console.log(office)
-        for (let i = office.length-1; i >= 0; i--) {
-			content += `
-	                    <tr id="row${office[i].office_id}">
-	                      <td class="text-center">${office[i].office_name}</td>
-						  <td class="text-center">${office[i].office_address}</td>
-						  <td class="text-center">${total_employee}</td>
-	                      <td class="text-center">
-	                        <button value="${office[i].office_id}" class="btn btn-outline-danger restore-button" ><i class="fas fa-trash-alt"></i>Khôi phục</button>
-	                      </td>
-	                    </tr>
-            		`;   
+        for (let i = employee.length-1; i >= 0; i--) {
+            content += `
+                <tr id="row${employee[i].employee_id}">
+                      <input hidden id="${employee[i].employee_id}">
+                      <td>${employee[i].employee_name}</td>
+                      <td>${employee[i].dob}</td>
+                      <td>${employee[i].employee_address}</td>
+					  <td>${employee[i].introduce}</td>
+					  <td>${employee[i].date_start}</td>
+                      <td>${employee[i].office_name}</td>
+					  <td>${employee[i].skill_name}</td>
+                      <td class="text-center">
+                        <button value="${employee[i].employee_id}" class="btn btn-outline-primary mr-2 restore-button" ><i class="far fa-edit"></i>Khôi phục</button>
+                      </td>
+                </tr>
+	        `;
         }
-        $("#officeList tbody").html(content);
-		/*$.fn.dataTable.ext.errMode = 'none';*/
-		$("#officeList").DataTable({
+        $("#employeeList tbody").html(content);
+		$("#employeeList").DataTable({
 		    columnDefs: [
-		        { orderable: false, targets: [2,3] },
-		        { searchable: false, targets: [2,3] }
+		        { orderable: false, targets: [1,2,3,6,7] },
+		        { searchable: false, targets: [1,2,3,6,7] }
 		    ],
 		    "language": {
 		        "processing": "Đang xử lý...",
@@ -159,30 +161,27 @@ function getAllHiddenOffice(){
 		        "zeroRecords": "Không tìm thấy kết quả"
 		    }
 		})
-        $(".restore-button").on("click", function (){
+        $(".restore-button").on("click",function (){
             let id = $(this).attr("value");
             restoreConfirm(id);
         })
-    })
+   })
 }
 
-
-
-function restoreConfirm(officeID) {
-    App.showRestoreConfirmDialog().then((result) => {
-	    if (result.isConfirmed) {
-	        $.ajax({
-	            type: "DELETE",
-	            url: `/offices/hidden-office/${officeID}`,
-	            success: function () {
-	                $("#row" + officeID).remove();
-	                App.showSuccessAlert("Khôi phục thành công!")
-	            }
-	        })
-	    }
-    })
+function restoreConfirm(employeeID) {
+	App.showRestoreConfirmDialog().then((result) => { 
+		if (result.isConfirmed) {
+			$.ajax({
+		        type : "DELETE",
+		        url : `/employees/hidden-employee/${employeeID}`
+		    }).done(function (){
+		        $("#row" + employeeID).remove();
+		        App.showSuccessAlert("Khôi phục thành công!")
+		    }).fail(function (){
+		        App.showErrorAlert("Đã xảy ra lỗi!")
+		    })
+		}
+	}) 
 }
 
-getAllHiddenOffice();
-
-$(".restore-button").on("click",restoreConfirm);
+getAllHiddenEmployee();
