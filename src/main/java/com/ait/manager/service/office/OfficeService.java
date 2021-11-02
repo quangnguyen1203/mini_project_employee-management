@@ -10,4 +10,5 @@ public interface OfficeService extends GeneralService<Office>{
 	Iterable<Office> findAllByisDeleteTrue();
 	void deleteOfficeById(Long id);
 	void restoreOffice(Long id);
+	Iterable<Office> searchOfficeByName(String string);
 }

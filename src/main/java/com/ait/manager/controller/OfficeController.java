@@ -85,4 +85,9 @@ public class OfficeController {
     public ResponseEntity<Integer> getTotalEmployee(@PathVariable Long id){
         return new ResponseEntity<>(employeeServiceImpl.totalEmployeeById(id),HttpStatus.OK);
     }
+    
+    @GetMapping("/search-office/{office_name}")
+    public ResponseEntity<Iterable<Office>> searchOfficeByName(@PathVariable String office_name){
+        return new ResponseEntity<>(officeServiceImpl.searchOfficeByName(office_name),HttpStatus.OK);
+    }
 }

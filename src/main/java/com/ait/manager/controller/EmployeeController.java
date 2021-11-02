@@ -72,6 +72,16 @@ public class EmployeeController {
 	public ResponseEntity<Iterable<EmployeeDTO>> listHiddenEmployee(){
 		return new ResponseEntity<>(employeeServiceImpl.listEmployeeHidden(), HttpStatus.OK);
 	}
+	
+	@DeleteMapping("/employees/delete/{id}")
+    public ResponseEntity<Employee> deleteEmpployee(@PathVariable Long id) {
+        Optional<Employee> employeeOptional = employeeServiceImpl.findById(id);
+        if (!employeeOptional.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        employeeServiceImpl.remove(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 
 	@DeleteMapping("/employees/{id}")
     public ResponseEntity<Employee> deleteEmpEntity(@PathVariable Long id) {
@@ -100,8 +110,6 @@ public class EmployeeController {
         return new ResponseEntity<>(employeeServiceImpl.save(employee),HttpStatus.OK);
     }
 
-
-	
 	@GetMapping("/employees/skill-employee/{id}") 
 	public ResponseEntity<EmployeeDTO> employeeResponse(@PathVariable Long id){
 		return new ResponseEntity<>(employeeServiceImpl.employeeFindById(id).get(),HttpStatus.OK); 

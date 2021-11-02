@@ -25,7 +25,7 @@ function getAllSkill() {
                 `;
 		}
 		$("#listSkill").html(content);
-		$('select[name=listSkill]').val();
+		$('select[name=listSkill]').val(1);
 		$('.selectpicker').selectpicker('refresh')
 	})
 }
@@ -97,47 +97,49 @@ function createEmployee() {
 
 $("#create-button").on("click", createEmployee);
 
-
 getAllOffice();
 
 $(() => {
 	$("#create-form").validate({
 		errorElement: 'div',
 		rules: {
-			product_name: {
+			employee_name: {
 				required: true,
-				minlength: 5,
+				minlength: 2,
 				maxlength: 50,
 			},
-			price: {
-				required: true,
-				number: true
+			dob: {
+				required: true
 			},
-			upCountry: {
+			employee_address: {
 				 required: true
-			 
+			},
+			introduce: {
+				 required: true
+			},
+			date_start: {
+				required: true
+			}
 		},
-		description: {
-			required: true
-		}
-	},
-
 		messages: {
-		product_name: {
-			required: "Vui lòng nhập tên sản phẩm",
-			minlength: "Vui lòng nhập tối thiểu 2 ký tự!",
-			maxlength: "Vui lòng nhập tối đa chỉ có 50 ký tự!"
+			employee_name: {
+				required: "Vui lòng nhập tên nhân viên",
+				minlength: "Vui lòng nhập tối thiểu 2 ký tự!",
+				maxlength: "Vui lòng nhập tối đa chỉ có 50 ký tự!"
+			},
+			dob: {
+				required: "Vui lòng nhập ngày tháng năm sinh của nhân viên!",
+			},
+			employee_address: {
+				required: "Vui lòng nhập địa chỉ của nhân viên!",
+			},
+			introduce: {
+				required: "Vui lòng giới thiệu ngắn gọn của nhân viên!",
+			},
+			date_start: {
+				required: "Vui lòng nhập ngày bắt đầu làm việc của nhân viên!",
+			},
 		},
-		price: {
-			required: "Vui lòng nhập giá sản phẩm!",
-			number: "Vui lòng chỉ nhập số"
-		},
-		upCountry: "Vui lòng chọn loại sản phẩm",
-		description: {
-			required: "Vui lòng nhập mô tả!"
-		}
-	},
-
 		submitHandler : createEmployee
     });
 });

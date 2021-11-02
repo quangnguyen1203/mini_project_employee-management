@@ -11,7 +11,6 @@ function getAllOffice(){
 	        url: `/offices/total-employee/${office[i].office_id}`
 		    }).done(function (total){
 				total_employee = parseInt(total);
-				console.log(total_employee)
 				content += `
 	                    <tr id="row${office[i].office_id}">
 	                      <td class="text-center">${office[i].office_name}</td>
@@ -19,7 +18,7 @@ function getAllOffice(){
 						  <td class="text-center">${total_employee}</td>
 	                      <td class="text-center">
 	                        <button value="${office[i].office_id}" class="btn btn-outline-primary mr-2 edit-button" ><i class="far fa-edit"></i>Sửa</button>
-	                        <button value="${office[i].office_id}" class="btn btn-outline-danger delete-button" ><i class="fas fa-trash-alt"></i>Xóa</button>
+	                        <button value="${office[i].office_id}" class="btn btn-outline-danger delete-button" ><i class="fas fa-trash-alt"></i>Ẩn</button>
 	                      </td>
 	                    </tr>
             		`;
@@ -37,7 +36,7 @@ function getAllOffice(){
     })
 }
 
-function getTotalEmployeeByOfficeId(id){
+/*function getTotalEmployeeByOfficeId(id){
 	$.ajax({
 	    type: "GET",
 	    url: `/offices/total-employee/${office[i].office_id}`
@@ -65,7 +64,7 @@ function getTotalEmployeeByOfficeId(id){
             editOffice(id);
         })
 	})
-}
+}*/
 
 function createOffice(){
     let office_name = $("#office_name").val();
@@ -93,7 +92,7 @@ function createOffice(){
 					  	<td class="text-center">0</td>
                         <td class="text-center">
                             <button value="${offices.office_id}" class="btn btn-outline-primary mr-2 edit-button" ><i class="far fa-edit"></i>Sửa</button>
-                            <button value="${offices.office_id}" class="btn btn-outline-danger delete-button" ><i class="fas fa-trash-alt"></i>Xóa</button>
+                            <button value="${offices.office_id}" class="btn btn-outline-danger delete-button" ><i class="fas fa-trash-alt"></i>Ẩn</button>
                         </td>
                     </tr>`);
             $("#create-form")[0].reset();
@@ -160,7 +159,7 @@ function saveOffice(){
 						<td class="text-center">${total_employee}</td>
                         <td class="text-center">
                             <button value="${office.office_id}" class="btn btn-outline-primary mr-2 edit-button" ><i class="fas fa-edit"></i>Sửa</button>
-                            <button value="${office.office_id}" class="btn btn-outline-danger delete-button" ><i class="fas fa-trash-alt"></i>Xoá</button>
+                            <button value="${office.office_id}" class="btn btn-outline-danger delete-button" ><i class="fas fa-trash-alt"></i>Ẩn</button>
                         </td>`);
 			$(".edit-button").on("click",function (){
 	            let id = $(this).attr("value");
@@ -179,19 +178,66 @@ function saveOffice(){
 }
 
 function deleteConfirm(officeID) {
-        App.showDeleteConfirmDialog().then((result) => {
+        App.showHideConfirmDialog().then((result) => {
         if (result.isConfirmed) {
             $.ajax({
                 type: "DELETE",
                 url: `/offices/${officeID}`,
                 success: function () {
                     $("#row" + officeID).remove();
-                    App.showSuccessAlert("Xóa thành công!")
+                    App.showSuccessAlert("Ẩn thành công!")
                 }
             })
         }
     })
 }
+
+function searchOfficeByName(office_name) {
+	if(office_name === ""){
+		getAllOffice();
+	} else {
+		$.ajax({
+        type: "GET",
+        url: `/search-office/${office_name}`,
+    	}).done(function (office) {
+       		let content = "";
+	        for (let i = 0; i < office.length; i++) {
+				$.ajax({
+		        type: "GET",
+		        url: `/offices/total-employee/${office[i].office_id}`
+			    }).done(function (total){
+					total_employee = parseInt(total);
+					content += `
+		                    <tr id="row${office[i].office_id}">
+		                      <td class="text-center">${office[i].office_name}</td>
+							  <td class="text-center">${office[i].office_address}</td>
+							  <td class="text-center">${total_employee}</td>
+		                      <td class="text-center">
+		                        <button value="${office[i].office_id}" class="btn btn-outline-primary mr-2 edit-button" ><i class="far fa-edit"></i>Sửa</button>
+		                        <button value="${office[i].office_id}" class="btn btn-outline-danger delete-button" ><i class="fas fa-trash-alt"></i>Ẩn</button>
+		                      </td>
+		                    </tr>
+	            		`;
+					$("#officeList tbody").html(content);
+					$(".delete-button").on("click", function (){
+			            let id = $(this).attr("value");
+			            deleteConfirm(id);
+			        })
+			        $(".edit-button").on("click",function (){
+			            let id = $(this).attr("value");
+			            editOffice(id);
+			        })
+				})		  
+	        }
+	    })
+	}
+    
+}
+
+$("#search").on("input", function () {
+	let office_name = $("#search").val();
+    searchOfficeByName(office_name);
+})
 
 getAllOffice();
 
@@ -199,20 +245,29 @@ $(() => {
     $("#create-form").validate({
         errorElement: 'div',
         rules: {
-            skill_name:  {
+            office_name:  {
                 required: true,
                 minlength: 2,
                 maxlength: 50,
             },
+			office_address: {
+				required: true,
+				minlength: 2,
+                maxlength: 50,
+			}
         },
 
         messages: {
-            skill_name: {
-                required: "Vui lòng nhập tên kỹ năng",
+            office_name: {
+                required: "Vui lòng nhập tên chi nhánh",
                 minlength: "Vui lòng nhập tối thiểu 2 ký tự!",
                 maxlength: "Vui lòng nhập tối đa chỉ có 50 ký tự!"
             },
-            
+            office_address: {
+                required: "Vui lòng nhập địa chỉ chi nhánh",
+                minlength: "Vui lòng nhập tối thiểu 2 ký tự!",
+                maxlength: "Vui lòng nhập tối đa chỉ có 50 ký tự!"
+            },
         },
 
         submitHandler : createOffice

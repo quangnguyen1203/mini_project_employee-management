@@ -36,6 +36,18 @@ class App {
         })
     }
 
+	static showHideConfirmDialog() {
+        return Swal.fire({
+            icon: 'warning',
+            text: 'Bạn có muốn ẩn dữ liệu đã chọn không ?',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Có, tôi muốn ẩn!',
+            cancelButtonText: 'Không',
+        })
+    }
+
     static showSuccessAlert(t) {
         Swal.fire({
             icon: 'success',

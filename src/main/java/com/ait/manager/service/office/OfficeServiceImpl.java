@@ -57,4 +57,10 @@ public class OfficeServiceImpl implements OfficeService {
 		// TODO Auto-generated method stub
 		officeRepository.restoreOffice(id);
 	}
+
+	@Override
+	public Iterable<Office> searchOfficeByName(String string) {
+		// TODO Auto-generated method stub
+		return officeRepository.searchOfficeByName(string);
+	}
 }

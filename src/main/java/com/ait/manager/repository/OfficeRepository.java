@@ -29,4 +29,7 @@ public interface OfficeRepository extends JpaRepository<Office, Long> {
     @Modifying
     @Query("update Office o set o.isDelete = false where o.office_id = :id")
     void restoreOffice(@Param("id") Long id);
+    
+    @Query(nativeQuery = true, value="SELECT * FROM offices o where o.office_name like %?%")
+    Iterable<Office> searchOfficeByName(String string);
 }
