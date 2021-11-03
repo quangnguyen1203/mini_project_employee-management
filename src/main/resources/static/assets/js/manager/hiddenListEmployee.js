@@ -1,3 +1,4 @@
+App.getUser();
 function getAllHiddenEmployee(){
     $.ajax({
         type: "GET",

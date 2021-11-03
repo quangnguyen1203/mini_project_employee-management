@@ -1,3 +1,4 @@
+App.getUser();
 function totalEmployee(){
     $.ajax({
         type:"GET",

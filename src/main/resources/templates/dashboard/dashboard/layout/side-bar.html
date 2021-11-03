@@ -2,34 +2,33 @@
 <div th:fragment="side-bar">
     <!-- Topbar Start -->
   <div class="navbar-custom">
-			<ul class="list-unstyled topnav-menu float-right mb-0">
-                <li class="dropdown notification-list">
-                    <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                        <img src="/assets/images/admin-avatar.jpg" alt="user-image" class="rounded-circle">
-                        <span class="pro-user-name ml-1">
-                            <span id="user">
-                               
-                            </span>
-                        </span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
-                        <!-- item-->
-                        <div class="dropdown-header noti-title">
-                            <h6 class="text-overflow m-0">Xin chào !</h6>
-                        </div>
+  	<ul class="list-unstyled topnav-menu float-right mb-0">
+         <li class="dropdown notification-list">
+             <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                 <img src="/assets/images/admin-avatar.jpg" alt="user-image" class="rounded-circle">
+                 <span class="pro-user-name ml-1">
+                     <span id="user">
+                        
+                     </span>
+                 </span>
+             </a>
+             <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+                 <!-- item-->
+                 <div class="dropdown-header noti-title">
+                     <h6 class="text-overflow m-0">Xin chào !</h6>
+                 </div>
 
-                        <a class="dropdown-item notify-item logout">
-                        	<form form-method="post" th:action=@{/logout}>
-                        		<button type="submit" class="btn btn-light"><i class="mdi mdi-logout-variant"></i>Đăng xuất</button>
-                        	</form>
-                        </a>
-
-                    </div>
-                </li>
-            </ul>
+                 <a class="dropdown-item notify-item logout">
+                 	<form form-method="post" th:action="@{/logout}">
+                 		<button type="submit" class="btn btn-light"><i class="mdi mdi-logout-variant"></i>Đăng xuất</button>
+                 	</form>
+                 </a>
+             </div>
+         </li>
+     </ul>
     <!-- LOGO -->
     <div class="logo-box text-center" style=" padding: 15px">
-      <span class="company" style="color: white; font-size:30px"> AIT </span>
+      <span class="company" style="color: white; font-size:30px"> AIT</span>
     </div>
 
     <!-- LOGO -->
@@ -80,7 +79,7 @@
                    </a>
                    <ul class="nav-second-level" aria-expanded="false">
                       	<li><a href="/offices">Danh sách chi nhánh</a></li>
-                      	<li><a href="/officeHidden">Danh sách chi nhánh đã xóa</a></li>
+                      	<li><a href="/officeHidden">Danh sách chi nhánh đã bị xóa</a></li>
                    </ul>
                </li>
            </ul>

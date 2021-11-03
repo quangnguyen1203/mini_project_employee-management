@@ -147,4 +147,17 @@ class App {
             let mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
             return `${mm}`;
     }
+
+    static logout(){
+		document.cookie = "cookiename= ; Expires = Thu, 01 Jan 1970 00:00:00 GMT"
+        document.cookie = 'JWT' +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        window.location.href = "http://localhost:8080/login";
+    }
+
+    static setCookie(cName, cValue) {
+        const d = new Date();
+        d.setTime(d.getTime() + (24*60*60*1000));
+        let expires = "expires="+ d.toUTCString();
+        document.cookie = cName + "=" + cValue + ";" + expires + ";path=/";
+    }
 }

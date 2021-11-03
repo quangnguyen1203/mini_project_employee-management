@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Employee Management AIT</title>
+  <div th:replace="/dashboard/layout/head::head"></div>
+  <style>
+    .error{
+      color: red;
+      font-style: italic;
+    }
+  </style>
+</head>
+
+<body>
+<!-- Begin page -->
+<div id="wrapper">
+  
+	<div th:replace="/dashboard/layout/side-bar::side-bar"></div>
+  <!-- ============================================================== -->
+  <!-- Start Page Content here -->
+  <!-- ============================================================== -->
+
+   <div class="content-page">
+    <div class="content">
+
+      <!-- Start Content-->
+      <div class="container-fluid">
+
+        <!-- start page title -->
+        <div class="row">
+          <div class="col-12" style="margin-top: 10px;">
+            <div class="page-title-box">
+              <h4 class="page-title">Chi nhánh</h4>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </div>
+        <!-- create office-->
+        <div th:replace="dashboard/office/create::createOffice"></div>
+        <!--end create office-->
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-body">
+              	<div class="row">
+              		<h4 class="header-title mb-4 col-md-6">Danh sách các chi nhánh</h4>
+	                <ul class="col-md-6">
+		                <li class="d-none d-lg-block">
+					        <form class="app-search">
+					          <div class="app-search-box">
+					            <div class="input-group">
+					              <input type="text" class="form-control" id="search" placeholder="Tìm kiếm chi nhánh . . . . .">
+					              <div class="input-group-append">
+					                <button class="btn" type="submit">
+					                  <i class="fas fa-search"></i>
+					                </button>
+					              </div>
+					            </div>
+					          </div>
+					        </form>
+					      </li>
+				      </ul>
+              	</div>
+                <div class="table-responsive">
+                  <table class="table table-centered mb-0 table-nowrap" id="officeList">
+                    <thead>
+                    <tr>
+                      <th class="text-center">Tên chi nhánh</th>
+                      <th class="text-center">Địa chỉ</th>
+                      <th class="text-center">Tổng nhân viên</th>
+                      <th class="text-center"></th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+
+                    </tbody>
+
+                  </table>
+
+                </div>
+                <!-- end .table-responsive-->
+              </div>
+              <!-- end card-body -->
+            </div>
+            <!-- end card -->
+          </div>
+          <!-- end col -->
+        </div>
+        <!-- end row -->
+
+      </div>
+      <!-- end container-fluid -->
+
+    </div>
+    <!-- end content -->
+
+  </div>
+
+
+  <!-- ============================================================== -->
+  <!-- End Page content -->
+  <!-- ============================================================== -->
+
+</div>
+<!-- END wrapper -->
+<div th:replace="dashboard/office/editModalOffice::editModalOffice"></div>
+</body>
+<div th:replace="dashboard/layout/scripts::scripts"></div>
+
+<script src="/assets/js/manager/listOffice.js"></script>
+</html>

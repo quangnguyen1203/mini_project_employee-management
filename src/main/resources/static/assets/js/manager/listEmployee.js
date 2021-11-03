@@ -1,3 +1,4 @@
+App.getUser();
 function getAllOffice() {
 	$.ajax({
 		type: "GET",
@@ -117,7 +118,6 @@ function employeeDetail(employeeID){
         type: "GET",
         url: `/employees/skill-employee/${employeeID}`,
     }).done(function (skills){
-	console.log(skills)
 		$('#id').val(skills.employee_id);
         $('#name').val(skills.employee_name);
         $('#dob').val(skills.dob);

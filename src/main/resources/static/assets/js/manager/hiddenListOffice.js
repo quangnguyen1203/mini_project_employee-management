@@ -1,3 +1,4 @@
+App.getUser();
 function getAllHiddenOffice(){
     $.ajax({
         type: "GET",

@@ -1,3 +1,4 @@
+App.getUser();
 function getAllOffice() {
 	$.ajax({
 		type: "GET",

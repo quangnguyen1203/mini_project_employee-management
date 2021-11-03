@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Employee Management AIT</title>
+  <div th:replace="/dashboard/layout/head::head"></div>
+</head>
+
+<body>
+<!-- Begin page -->
+<div id="wrapper">
+  
+	<div th:replace="/dashboard/layout/side-bar::side-bar"></div>
+  <!-- ============================================================== -->
+  <!-- Start Page Content here -->
+  <!-- ============================================================== -->
+
+   <div class="content-page">
+    <div class="content">
+
+      <!-- Start Content-->
+      <div class="container-fluid">
+
+        <!-- start page title -->
+        <div class="row">
+          <div class="col-12" style="margin-top: 10px;">
+            <div class="page-title-box">
+              <h4 class="page-title">Chi nhánh</h4>
+              <div class="clearfix"></div>
+            </div>
+          </div>
+        </div>
+        <!-- create office-->
+        <!--end create office-->
+        <div class="row">
+          <div class="col-12">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="header-title mb-4">Danh sách các chi nhánh đã bị xóa</h4>
+                <div class="table-responsive">
+                  <table class="table table-centered mb-0 table-nowrap" id="officeList">
+                    <thead>
+                    <tr>
+                      <th class="text-center">Tên chi nhánh</th>
+                      <th class="text-center">Địa chỉ</th>
+                      <th class="text-center">Tổng nhân viên</th>
+                      <th class="text-center"></th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+
+                    </tbody>
+
+                  </table>
+
+                </div>
+                <!-- end .table-responsive-->
+              </div>
+              <!-- end card-body -->
+            </div>
+            <!-- end card -->
+          </div>
+          <!-- end col -->
+        </div>
+        <!-- end row -->
+
+      </div>
+      <!-- end container-fluid -->
+
+    </div>
+    <!-- end content -->
+
+  </div>
+
+
+  <!-- ============================================================== -->
+  <!-- End Page content -->
+  <!-- ============================================================== -->
+
+</div>
+<!-- END wrapper -->
+</body>
+<div th:replace="dashboard/layout/scripts::scripts"></div>
+
+<script src="/assets/js/manager/hiddenListOffice.js"></script>
+</html>

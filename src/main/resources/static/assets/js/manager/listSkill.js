@@ -1,3 +1,4 @@
+App.getUser();
 function getAllSkill(){
     $.ajax({
         type: "GET",
