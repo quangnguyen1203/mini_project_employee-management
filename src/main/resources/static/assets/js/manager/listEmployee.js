@@ -62,8 +62,8 @@ function getAllEmployee(){
         $("#employeeList tbody").html(content);
 		$("#employeeList").DataTable({
 		    columnDefs: [
-		        { orderable: false, targets: [1,2,3,6,7] },
-		        { searchable: false, targets: [1,2,3,6,7] }
+		        { orderable: false, targets: [2,3,6,7] },
+		        { searchable: false, targets: [2,3,6,7] }
 		    ],
 		    "language": {
                 "url": "//cdn.datatables.net/plug-ins/1.11.3/i18n/vi.json"
@@ -186,7 +186,7 @@ function saveEmployee(){
 				    }).done(function (skills){
 					 	$('#row'+employee_id+ ' td').remove();
 						$('#row'+employee_id).html(`
-			                <td>${employee.employee_name}</td>
+			                <td><a value="${employee.employee_id}" class="btn employee_detail"><u>${employee.employee_name}<u></a></td>
 			                <td>${employee.dob}</td>
 			                <td>${employee.employee_address}</td>
 			                <td>${employee.introduce}</td>
@@ -195,7 +195,7 @@ function saveEmployee(){
 							<td>${skills.skill_name}</td>
 			                <td class="text-center">
 			                    <button value="${employee.employee_id}" class="btn btn-outline-primary mr-2 edit-button" ><i class="fas fa-edit"></i>Sửa</button>
-			                    <button value="${employee.employee_id}" class="btn btn-outline-danger delete-button" ><i class="fas fa-trash-alt"></i>Xóa</button>
+			                    <button value="${employee.employee_id}" class="btn btn-outline-danger delete-button" ><i class="fas fa-trash-alt"></i>Ẩn</button>
 			                </td>`);
 			            $(".delete-button").on("click", function (){
 			                App.showDeleteConfirmDialog().then((result) => {
@@ -209,6 +209,10 @@ function saveEmployee(){
 			                let id = $(this).attr("value");
 			                editEmployee(id);
 			            })
+						$('.employee_detail').on("click", function () {
+				            let id = $(this).attr('value');
+				            employeeDetail(id);
+				        })
 			            $('#editModal').modal("hide");
 			            App.showSuccessAlert("Đã cập nhật thành công!")
 			            $("#edit-employee")[0].reset();

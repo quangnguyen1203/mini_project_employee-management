@@ -12,7 +12,7 @@
 	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script type="text/javascript" src="/assets/js/app.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<!--     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"> -->
 </head>
 <body class="img js-fullheight" style="background-image: url(assets/images/bg.jpg);">
 <section class="ftco-section">
@@ -25,28 +25,19 @@
         <div class="row justify-content-center">
             <div class="col-md-6 col-lg-6">
                 <div class="login-wrap p-0">
-                    <h3 class="mb-4 text-center">AUREOLE IT INC</h3>
                     <form action="#" class="signin-form">
-                        <div class="form-group col-lg-11 mb-3">
+                        <div class="form-group">
                             <input type="text" class="form-control" id="username" name="username" placeholder="Tên đăng nhập" required autofocus>
                         </div>
-                        <div class="form-group col-lg-12 mb-3">                 
-                        	<div class="row">
-                        		<div class=" form-group col-lg-11">
-                        			<input type="password" id="password" name="password" class="form-control" placeholder="Mật khẩu" required>
-                        		</div>
-                        		<div class="form-group col-lg-1" style="display: flex; justify-content: center; align-items: center">
-                        			<span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
-                        		</div>
-                        	</div>
+                        <div class="form-group">
+                            <input type="password" id="password" name="password" class="form-control" placeholder="Mật khẩu" required>
+                            <span toggle="#password" class="fa fa-fw fa-eye field-icon toggle-password"></span>
                         </div>
-                        <div class="form-group mb-3 col-lg-11">
+                        <div class="form-group">
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                             <button type="button" class="form-control btn btn-primary btn-block px-3" id="btnLogin" >Đăng nhập</button>
                         </div>
-
                     </form>
-
                 </div>
             </div>
         </div>

@@ -17,6 +17,7 @@ function getAllSkill(){
             `;
         }
         $("#skillList tbody").html(content);
+		$.fn.dataTable.ext.errMode = 'none';
 		$("#skillList").DataTable({
 			columnDefs: [
 		        { orderable: false, targets: 1 },
